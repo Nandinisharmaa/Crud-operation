@@ -97,13 +97,12 @@ def delete_data(request,id):
 
 #user data update  view It is not fully functional
 def update_view(request,id):
-    d1={'id':id}
-    data=Create_notes.objects.get(id=id)
-    d1={'data':data}
-    print(data.note)
-    # o_Ndata=request.POST.get('note')
-    # udata=Create_notes(note=o_Ndata)
-    # udata.save()
-    # return HttpResponse("<script>alert('Created');window.location.href='/create'</script>")#it prevent from resubmitting the null data on page refreshing
+    obj=Create_notes.objects.get(id=id)
+    if request.method=='POST':
+        des=request.POST.get('note')
+        if des:
+            obj.note=des
+            obj.save()# It saves updated Data
+            return HttpResponse("<script>alert('Updated');window.location.href='/create'</script>")
+    d1={'obj':obj}
     return render(request,'update.html',context=d1)
-
