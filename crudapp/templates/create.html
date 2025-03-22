@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block create %}
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table ,td{
+    font-size: 20px;
+}
+</style>
+<div class="container-fluid create_card">
+    <div class="row">
+        <div class="col-sm-4 ">
+            <div class="notes">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h1>Create Note Here</h1>
+                    
+                    <div class="input-box1">
+                        <textarea  name="note" id="" rows="17" cols="50" placeholder="Your Plan....." required></textarea>
+                    </div>
+                    <button type="submit" class="btns">Create</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="show_data">
+                <table style="width: 100%;">
+                    <tr>
+                        <th>Description</th>
+                        <th class="create_icon">Edit</th>
+                        <th class="create_icon">Created Date</th>
+                        <th >Delete</th>
+                    </tr>
+                    {% for show in show_note %}
+                    <tr>
+                        <td>{{show.note}}</td>
+                        <td><a href="{% url 'update' show.id %}"><i class='bx bx-edit-alt'></i></a></td>
+                        <td>{{show.created_date}}</td>
+                        <td class="create_icon"><a href="delete_d/{{show.id}}"><img src="{% static 'image/delete.png' %}" alt=""></a></td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock create %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Create {% endblock title %}</title>
+</head>
+<body>
+
+<h1>{{request.user}}</h1>
+
+    <h1>create notes</h1>
+</body>
+</html>

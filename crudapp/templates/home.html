@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 mid">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 white_row" ></div>
+                </div>
+            </div>
+            <div class="container reg_item">
+                <div class="row " style="display: flex;gap: px;">
+                    <div class="col-sm-2 crud_d">
+                        <div class="box1">
+                            <div class="items">
+                                <p>C</p>
+                                <p>R</p>
+                                <p>U</p>
+                                <p>D</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-8 notesty" >
+                         <div class="col-sm-4">
+                            <div class="note_i">
+                        <a href="{% url 'create' %}">
+                                <img src="{% static 'image/edit.png' %}" alt="" ">
+                               
+                            </a>
+                            <p style="font-size: 50px;color: white;">Click to Create</p>
+                        </div>
+                         </div>
+                         <div class="col-sm-4">
+                            <div class="animate1">
+                                <img src="{% static 'image/an.gif' %}" alt="">
+                            </div>
+                         </div>
+                        
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+{% endblock home %}
+
+
+
+

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block register %}
+
+            <div class="infos alert-primary">
+                {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+            </div>
+                        
+<div class="login">
+    <div class="wrapper">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h1>Register</h1>
+            <div class="input-box">
+                <input type="text" name="uname" id="" placeholder="Username" required >  
+                <i class='bx bx-user-circle'></i>         
+            </div>
+            <div class="input-box">
+                <input type="email" name="email" id="" placeholder="abc@gmail.com" required >  
+                <i class='bx bx-user-circle'></i>         
+            </div>
+            <div class="input-box">
+                <input type="password" name="password1" placeholder="Password" required>
+                <i class='bx bxs-lock-alt' ></i> 
+            </div>
+            <div class="input-box">
+                <input type="password" name="password2" placeholder="Confirm Password" required>
+                <i class='bx bxs-lock-alt' ></i> 
+            </div>
+            
+            <button type="submit" class="btn">Register</button>
+            <div class="register-link">
+                <p>Already have an account ?<a href="{% url 'register' %}">Login here</a></p>
+            </div>
+        
+        
+        </form>
+    </div>
+</div>
+
+
+{% endblock register %}
+
