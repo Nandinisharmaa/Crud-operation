@@ -72,21 +72,22 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect(login_view)
+# view for create notes
 def create_view(request):
     if request.user.is_authenticated:
         notes=request.POST.get('note')
-        create_data=Create_notes(note=notes,)
-        create_data.save()
+        if notes:#it prevent from resubmitting the null data on page refreshing
+            create_data=Create_notes(note=notes,)
+            create_data.save()
+            # return HttpResponse("<script>alert('Created');window.location.href='/create'</script>")
+        else:
+            error_message="All filds are required"
+            print(error_message)
         show_note=Create_notes.objects.all()
         d1={'show_note':show_note}
         return render(request,'create.html',context=d1)
-        #return HttpResponse("<script>alert('Created');window.location.href='/create'</script>")#it prevent from resubmitting the null data on page refreshing
     else:
-        return HttpResponse("<script>alert('login');window.location.href='/login'</script>")#it prevent from resubmitting the null data on page refreshing
-
-    # show_note=Create_notes.objects.all()
-    # d1={'show_note':show_note}
-    # return render(request,'create.html',context=d1)
+        return HttpResponse("<script>alert('login');window.location.href='/login'</script>")
 
 #user data delete view
 def delete_data(request,id):
